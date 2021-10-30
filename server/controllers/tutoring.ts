@@ -29,6 +29,7 @@ export const getTutoring = async (req:Request, res:Response) => {
     const id = req?.params?.id;
     
     
+    
     try {
         const tutoring = await TutoringModel.findById(id); 
         console.log(tutoring);              
@@ -66,8 +67,8 @@ export const createTutoring = async (req:Request, res:Response) => {
 export const updateTutoring = async (req:Request, res:Response) => {
 
     
-    const id = req?.params?.id;                                                 // o usar "const {id} = req.params as String"  por ejemplo??
-    const updatedTutoring:TutoringI = req.body;
+    const { id } = req.params;                                                 // o usar "const id = req?.params?.id;"  por ejemplo??
+    const updatedTutoring = req.body;
     
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
 
@@ -76,8 +77,20 @@ export const updateTutoring = async (req:Request, res:Response) => {
     res.json(updatedTutoring);
 }
 
+
+//DELETE
+export const deleteTutoring = async (req:Request, res:Response) => {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+
+    await TutoringModel.findByIdAndRemove(id);
+
+    res.json({ message: "Post deleted successfully." });
+}
+
 export default router;
 
-//
+
 
 

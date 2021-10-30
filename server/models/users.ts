@@ -2,11 +2,11 @@ import { Schema, model, Document} from 'mongoose';
 
 // 1. Create an interface representing a document in MongoDB.
  export interface TutoringI extends Document {                                                                     //interface o clase??
-    title: string;
-    description: string;
-    creator: string;
-    picture?: string;
-    price: number;
+    name: string;
+    email: string;
+    password: string;
+    age: number;
+    subjects: string[];
   }
 
 

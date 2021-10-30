@@ -6,6 +6,7 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import tutoringsRoutes from './routes/tutoring';
+import questionsRoutes from './routes/questions';
 
 dotenv.config();
 
@@ -16,7 +17,8 @@ app.use(express.urlencoded({ limit: '30mb', extended: true }))            //limi
 app.use(cors());
 app.use(morgan("dev"));
 
-app.use('/',tutoringsRoutes);
+app.use('/tutor',tutoringsRoutes);
+app.use('/question',questionsRoutes);
 
 
 mongoose.connect(`${process.env.CONNECTION_URL}`)                         // have to use a template string and interpolate the environment variable.Otherwise, you’ll get an error: Type 'undefined' is not assignable to type 'string'
