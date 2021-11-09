@@ -6,17 +6,16 @@ import { Schema, model, Document} from 'mongoose';
     email: string;
     password: string;
     age: number;
-    subjects: string[];
+    subjects: string;     //problemas con Array<String> al ponerselo en el schema
   }
 
 
   // 2. Create a Schema corresponding to the document interface.
 const TutoringSchema = new Schema<TutoringI>({
-    title: { type: String, required: true },
-    description: { type: String, required: true },
-    creator: { type: String, required: true },
-    picture: String,
-    price: { type: Number, required: true }
+    email: { type: String, required: true },
+    password: { type: String, required: true },
+    age: { type: Number, required: true },
+    subjects: { type: String, required: true }
   });
 
 
@@ -25,6 +24,47 @@ export const TutoringModel = model<TutoringI>('Tutoring', TutoringSchema);      
 
 
 
+
+
+
+
+
+
+
+/*
+UserSchema.pre('save', function(next){
+    if(this.isNew || this.isModified('password')){
+
+        const document = this;
+
+        bcrypt.hash(document.password, saltRounds, (err, hashedPassword) =>{
+            if(err){
+                next(err);
+            }else{
+                document.password = hashedPassword;
+                next();
+            }
+        });
+    }else{
+        next();
+    }
+})
+
+
+UserSchema.methods.isCorrectPassword = function(password, callback){
+    bcrypt.compare(password, this.password, function(err, same){
+        if(err){
+            callback(err);
+        }else{
+            callback(err, same);
+        }
+    })
+}
+
+var User = mongoose.model('User', UserSchema);
+
+export default User;
+*/
 
 
 

@@ -7,6 +7,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import tutoringsRoutes from './routes/tutoring';
 import questionsRoutes from './routes/questions';
+import studentsRoutes from './routes/students';
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(morgan("dev"));
 
 app.use('/tutor',tutoringsRoutes);
 app.use('/question',questionsRoutes);
+app.use('/students', studentsRoutes);
 
 
 mongoose.connect(`${process.env.CONNECTION_URL}`)                         // have to use a template string and interpolate the environment variable.Otherwise, you’ll get an error: Type 'undefined' is not assignable to type 'string'
