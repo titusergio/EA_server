@@ -5,8 +5,9 @@ import { Schema, model, Document} from 'mongoose';
 // 1. Create an interface representing a document in MongoDB.
  export interface StudentI extends Document {                                                                     //interface o clase??
     name: string,
-    email: string,                                                                                                  //nose pq no me deja ponerle date, me da conflicto pf
-    avatar: boolean       
+    email: string,
+    year: number,                                                                                                  //nose pq no me deja ponerle date, me da conflicto pf
+    age: number       
     };
   
     
@@ -16,7 +17,9 @@ import { Schema, model, Document} from 'mongoose';
 const StudentSchema = new Schema<StudentI>({
     name: { type: String, required: true },
     email: { type: String, required: true },
-    avatar: { type: Boolean, required: true }
+    year: { type: Number, required: true },
+    age: { type: Number, required: true }
+
     
   });
 

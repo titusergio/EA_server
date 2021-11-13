@@ -36,7 +36,7 @@ export const createQuestion = async (req:Request, res:Response) => {
 
     try {
         await newPostQuestion.save();
-
+        
         res.status(201).json(newPostQuestion );
     } catch (error:any) {
         res.status(409).json({ message: error.message });
