@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col-md-4 p-4" *ngFor="let teacher of teachers">
+        <div class="card card-photo" (click)="selectedCard(teacher._id)">
+            <div class="card-header">
+                {{teacher.name}},   {{teacher.age}}
+            </div>
+            <div class="card-body"*ngFor="let a of teacher.subjects" >
+                <div *ngFor="let Subject of subjects" >
+                <div *ngIf="Subject._id===a">
+                    {{Subject.name}}
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
