@@ -1,5 +1,3 @@
-
-
 import express from 'express'; 
 import morgan from 'morgan';
 import cors from 'cors';
@@ -9,6 +7,7 @@ import tutoringsRoutes from './routes/tutoring';
 import questionsRoutes from './routes/questions';
 import studentsRoutes from './routes/students';
 import subjectRoutes from './routes/subject';
+import teacherRoutes from './routes/teacher';
 dotenv.config();
 
 const app = express();
@@ -22,6 +21,7 @@ app.use('/tutor',tutoringsRoutes);
 app.use('/question',questionsRoutes);
 app.use('/students', studentsRoutes);
 app.use('/subjects',subjectRoutes);
+app.use('/teachers',teacherRoutes);
 
 
 mongoose.connect(`${process.env.CONNECTION_URL}`)                         // have to use a template string and interpolate the environment variable.Otherwise, you’ll get an error: Type 'undefined' is not assignable to type 'string'
