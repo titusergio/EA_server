@@ -6,16 +6,17 @@ import { Schema, model, Document} from 'mongoose';
     email: string;
     password: string;
     age: number;
-    subjects: string;     //problemas con Array<String> al ponerselo en el schema
+    subjects: Array<string>;     //problemas con Array<String> al ponerselo en el schema
   }
 
 
   // 2. Create a Schema corresponding to the document interface.
 const TutoringSchema = new Schema<TutoringI>({
+    name : { type: String, required: true},
     email: { type: String, required: true },
     password: { type: String, required: true },
     age: { type: Number, required: true },
-    subjects: { type: String, required: true }
+    subjects: { type: [String], required: false }
   });
 
 
