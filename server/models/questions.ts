@@ -1,14 +1,13 @@
-
-
 import { Schema, model, Document} from 'mongoose';
+import {UserModel, UserI} from './users';
 
 
 
 // 1. Create an interface representing a document in MongoDB.
  export interface QuestionI extends Document {                                                                     //interface o clase??
-    creator: string,
+    creator: UserI['_id']
     question: string,
-    createdAt:any,                                                                                                  //nose pq no me deja ponerle date, me da conflicto pf
+    createdAt:Date,                                                                                                  //nose pq no me deja ponerle date, me da conflicto pf
     solved: boolean,
     answerCountNumber:number
         
@@ -19,7 +18,7 @@ import { Schema, model, Document} from 'mongoose';
 
   // 2. Create a Schema corresponding to the document interface.
 const QuestionSchema = new Schema<QuestionI>({
-    creator: { type: String, required: true },
+    creator: { type: Schema.Types.ObjectId, ref: UserModel, required: true },
     question: { type: String, required: true },
     createdAt: { type: Date, default: new Date() },
     solved: { type: Boolean, required: true },
