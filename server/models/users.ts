@@ -5,19 +5,22 @@ import {SubjectModel, SubjectI} from './subject';
 // 1. Create an interface representing a document in MongoDB.
  export interface UserI extends Document {                                                                     //interface o clase??
     name: string;
+    lastName: string;
     email: string;
     password: string;
     age: number;
-    subjects: SubjectI['_id'];     //problemas con Array<String> al ponerselo en el schema
+    subjects: SubjectI['_id'];
   }
 
 
   // 2. Create a Schema corresponding to the document interface.
 const UserSchema = new Schema<UserI>({
+    name: { type: String, required: true },
+    lastName: { type: String, required: true },
     email: { type: String, required: true },
     password: { type: String, required: true },
-    age: { type: Number, required: true },
-    subjects:[{ type: Schema.Types.ObjectId, ref: SubjectModel, required: true }]
+    age: { type: Number, required: false },
+    subjects:[{ type: Schema.Types.ObjectId, ref: SubjectModel, required: false }]
   });
 
 

@@ -5,7 +5,7 @@ import {UserModel, UserI} from './users';
 
 // 1. Create an interface representing a document in MongoDB.
  export interface QuestionI extends Document {                                                                     //interface o clase??
-    creator: UserI['_id']
+    creator: UserI['_id'],
     question: string,
     createdAt:Date,                                                                                                  //nose pq no me deja ponerle date, me da conflicto pf
     solved: boolean,
