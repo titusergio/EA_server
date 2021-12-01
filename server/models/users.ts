@@ -1,4 +1,4 @@
-import { Schema, model, Document} from 'mongoose';
+import { Schema, model, Document, ObjectId} from 'mongoose';
 import {SubjectModel, SubjectI} from './subject';
 
 
@@ -9,7 +9,7 @@ import {SubjectModel, SubjectI} from './subject';
     email: string;
     password: string;
     age: number;
-    subjects: SubjectI['_id'];
+    subjects: Array<ObjectId>;
   }
 
 
@@ -26,6 +26,7 @@ const UserSchema = new Schema<UserI>({
 
 // 3. Create a Model.
 export const UserModel =model<UserI>('User', UserSchema);                         
+
 
 
 
