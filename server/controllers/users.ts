@@ -1,25 +1,82 @@
-/*
-import express from 'express';
-import mongoose from 'mongoose';
+import { Response, Request, Router } from 'express';
+import {UserI, UserModel} from '../models/users';
 
-import User from '../models/user.js';
 
-const router = express.Router();
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
-export const Register = async (req, res) => {
-    const { name, email, password, age, subjects } = req.body;
-    const newUser = new User({ name, email, password, age, subjects })
+//const router = Router();
+
+const secret = 'test';
+
+
+export const signUp = async (req:Request, res:Response) => {
+    const { name, lastName , email, password, subjects} = req.body;
+  
     try {
-        await newUser.save();
-        res.status(201).json(newUser);
+      const oldUser = await UserModel.findOne({ email });
+  
+      if (oldUser) return res.status(400).json({ message: "User already exists" });
+  
+      const hashedPassword = await bcrypt.hash(password, 12);
+  
+      const result = await UserModel.create({  name , lastName , email, password: hashedPassword, subjects});
+
+      console.log("punto1");
+  
+      const token = jwt.sign( { email: result.email, id: result._id }, secret, { expiresIn: "1h" } );
+  
+      res.status(201).json({ result, token });
     } catch (error) {
-        res.status(409).json({ message: error.message });
+      res.status(500).json({ message: "Something went wrong" });
+      
+      console.log(error);
+    }
+  };
+
+  export const signIn = async (req: Request, res: Response) => {
+    const { email, password } = req.body;
+  
+    try {
+      const oldUser = await UserModel.findOne({ email });
+  
+      if (!oldUser) return res.status(404).json({ message: "User doesn't exist" });
+  
+      const isPasswordCorrect = await bcrypt.compare(password, oldUser.password);
+  
+      if (!isPasswordCorrect) return res.status(400).json({ message: "Invalid credentials" });
+  
+      const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret, { expiresIn: "1h" });
+  
+      res.status(200).json({ result: oldUser, token });
+    } catch (err) {
+      res.status(500).json({ message: "Something went wrong" });
+    }
+  };
+
+
+
+
+
+export const getUsers = async (req:Request, res:Response) => { 
+    try {
+        const users:UserI[] = await UserModel.find();               
+        res.status(200).json(users);
+        
+    } catch (error:any) {
+        res.status(404).json({ message: error.message });
     }
 }
 
+export const getUser = async (req:Request, res:Response) => { 
+    
+    const { id } = req.params;
 
-export default router;
-
-
-
-*/
+    try {
+        const user = await UserModel.findById(id);
+        
+        res.status(200).json(user);
+    } catch (error:any) {
+        res.status(404).json({ message: error.message });
+    }
+}
