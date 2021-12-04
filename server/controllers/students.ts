@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 
 import {StudentI, StudentModel} from '../models/student';
 
-const router = Router();
+const router = Router();  //texto para borrar
 
 export const getStudents = async (req:Request, res:Response) => { 
     try {
