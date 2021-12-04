@@ -27,12 +27,6 @@ app.use('/users',userRoutes);
 
 mongoose.connect(`${process.env.CONNECTION_URL}`)                         // have to use a template string and interpolate the environment variable.Otherwise, you’ll get an error: Type 'undefined' is not assignable to type 'string'
   .then(() => app.listen(process.env.PORT, () => console.log(`Base MongoDB conectad, servidor corriendo en el puerto: http://localhost:${process.env.PORT}`)))
-<<<<<<< HEAD
+
   .catch((error) => console.log(`${error} no se pudo conectar`));
 
-
-
-//asdf
-=======
-  .catch((error) => console.log(`${error} no se pudo conectar`));
->>>>>>> sergio-login
