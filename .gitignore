@@ -2,5 +2,5 @@
 
 # dependencies
 /server/node_modules
-/server/.env
+#/server/.env
 /server/dist
