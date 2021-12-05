@@ -1,6 +1,6 @@
 import { Response, Request, Router } from 'express';
 import {UserI, UserModel} from '../models/users';
-
+import validationSchema from '../middleware/validatiom';
 
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
@@ -14,8 +14,10 @@ export const signUp = async (req:Request, res:Response) => {
     const { name, lastName , email, password, subjects} = req.body;
   
     try {
-      const oldUser = await UserModel.findOne({ email });
-  
+      const validation = await validationSchema.validateAsync(req.body);
+      console.log(validation);
+
+      const oldUser = await UserModel.findOne({ email: email });
       if (oldUser) return res.status(400).json({ message: "User already exists" });
   
       const hashedPassword = await bcrypt.hash(password, 12);
