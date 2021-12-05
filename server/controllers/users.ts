@@ -4,6 +4,7 @@ import validationSchema from '../middleware/validatiom';
 
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import Joi from "Joi";
 
 //const router = Router();
 
@@ -23,8 +24,6 @@ export const signUp = async (req:Request, res:Response) => {
       const hashedPassword = await bcrypt.hash(password, 12);
   
       const result = await UserModel.create({  name , lastName , email, password: hashedPassword, subjects});
-
-      console.log("punto1");
   
       const token = jwt.sign( { email: result.email, id: result._id }, secret, { expiresIn: "1h" } );
   

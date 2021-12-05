@@ -8,15 +8,15 @@ const validationSchema = Joi.object({
         .lowercase()
         .required()
         .messages({
-            'any.required': `"a" is a required field`
+            'any.required': `"email" is a required field`
           }),
     password: Joi.string()
         .min(4)
         .required()
         .messages({
-            'string.empty': `"a" cannot be an empty field`,
-            'string.min': `"a" should have a minimum length of {#limit}`,
-            'any.required': `"a" is a required field`
+            'string.empty': `"password" cannot be an empty field`,
+            'string.min': `"password" should have a minimum length of {#limit}`,
+            'any.required': `"password" is a required field`
           }),
     confirmPassword: Joi.string(),
     age: Joi.number(),
