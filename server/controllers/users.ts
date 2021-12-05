@@ -11,7 +11,7 @@ const secret = 'test';
 
 
 export const signUp = async (req:Request, res:Response) => {
-    const { name, lastName , email, password, subjects} = req.body;
+    const { name, lastName , email, password, picture, subjects} = req.body;
   
     try {
       const oldUser = await UserModel.findOne({ email });
@@ -20,9 +20,9 @@ export const signUp = async (req:Request, res:Response) => {
   
       const hashedPassword = await bcrypt.hash(password, 12);
   
-      const result = await UserModel.create({  name , lastName , email, password: hashedPassword, subjects});
+      const result = await UserModel.create({  name , lastName , email, password: hashedPassword, picture, subjects});
 
-      console.log("punto1");
+      
   
       const token = jwt.sign( { email: result.email, id: result._id }, secret, { expiresIn: "1h" } );
   

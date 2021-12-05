@@ -8,6 +8,7 @@ import {SubjectModel, SubjectI} from './subject';
     lastName: string;
     email: string;
     password: string;
+    picture: string;
     age: number;
     subjects: Array<ObjectId>;
   }
@@ -19,6 +20,7 @@ const UserSchema = new Schema<UserI>({
     lastName: { type: String, required: true },
     email: { type: String, required: true },
     password: { type: String, required: true },
+    picture: { type: String, required: true },
     age: { type: Number, required: false },
     subjects:[{ type: Schema.Types.ObjectId, ref: SubjectModel, required: false }]
   });

@@ -2,21 +2,23 @@ import { Schema, model, Document} from 'mongoose';
 
 // 1. Create an interface representing a document in MongoDB.
  export interface TutoringI extends Document {                                                                     //interface o clase??
-    title: string;
+    creatorName: string;
+    subject:string;
     description: string;
-    creator: string;
-    picture?: string;
+    picture: string;
     price: number;
+    creatorId: string;
   }
 
 
   // 2. Create a Schema corresponding to the document interface.
 const TutoringSchema = new Schema<TutoringI>({
-    title: { type: String, required: true },
-    description: { type: String, required: true },
-    creator: { type: String, required: true },
-    picture: String,
-    price: { type: Number, required: true }
+    creatorName: { type: String, required: true },
+    subject: { type: String, required: true },
+    description: { type: String, required: false },
+    picture: { type: String, required: true },
+    price: { type: Number, required: true },
+    creatorId: { type: String, required: true },
   });
 
 
