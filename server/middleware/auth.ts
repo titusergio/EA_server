@@ -5,15 +5,18 @@ const secret = 'test';            //same string as inthe signup ,  To generate a
 
 const auth = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const token = <string>req.headers.authorization!.split(" ")[1];   // i dont know if is better put '?' or '!' in this case
+    
+    const token = <string>req.headers.authorization?.split(" ")[1]; // i dont know if is better put '?' or '!' in this case
+    
     //const token = <string>req.headers["auth"];              // is the same result?
     const isCustomAuth = token.length < 500;                  //to distinguis google auth
+    ;
 
     let decodedData;
 
     if (token && isCustomAuth) {      
       decodedData = <any>jwt.verify(token, secret);
-
+      
       //we know wich user is log them and wich user is comenting for example                                    
       req.userId = decodedData?.id;       //by default request not has userId, so in order to solve it I have use a Typescript feature called Declaration Mergin. see new directory @types!
     } else {
@@ -30,3 +33,4 @@ const auth = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 export default auth;
+
