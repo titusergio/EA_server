@@ -8,8 +8,7 @@ import {AnswerModel, AnswerI} from './answers';
  export interface QuestionI extends Document {                                                                     //interface o clase??
     creator: UserI['_id']
     question: string,
-    createdAt:Date,                                                                                                  //nose pq no me deja ponerle date, me da conflicto pf
-    solved: boolean,
+    createdAt:Date, 
     answers:Array<ObjectId>
   
         
@@ -23,7 +22,6 @@ const QuestionSchema = new Schema<QuestionI>({
     creator: { type: Schema.Types.ObjectId, ref: UserModel, required: true },
     question: { type: String, required: true },
     createdAt: { type: Date, default: new Date() },
-    solved: { type: Boolean, required: true },
     answers: [{ type: Schema.Types.ObjectId, ref: 'AnswerI', required: false }]
   });
 

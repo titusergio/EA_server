@@ -20,7 +20,7 @@ const AnswerSchema = new Schema<AnswerI>({
     creator: { type: Schema.Types.ObjectId, ref: UserModel, required: true },
     answer: { type: String, required: true },
     createdAt: { type: Date, default: new Date() },
-    likeCountNumber: { type: Number, default: 0 }
+    likeCountNumber: { type: Number, required: true ,default: 0 }
   });
 
 
