@@ -1,1 +1,4 @@
 GET http://localhost:4000/flats
+##########
+
+DELETE http://localhost:4000/flats/61a6530c46c262d4b40d9b1f
