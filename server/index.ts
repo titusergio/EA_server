@@ -14,7 +14,6 @@ import conversationRoutes from './routes/conversation';
 import { Socket } from 'socket.io';
 import { UserI } from './models/users';
 
-
 dotenv.config();
 
 let users =Array<any>();
