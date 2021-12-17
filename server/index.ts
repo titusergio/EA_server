@@ -46,7 +46,7 @@ const io = require("socket.io")(8900,{
   },
 });
 
-const addUser = (userId: string, socketId:string) => {
+const addUser = (userId: string, socketId:string ) => {
   !users.some((user) => user.userId === userId) &&
     users.push({ userId, socketId });
 };
@@ -66,7 +66,6 @@ io.on("connection", (socket:Socket) => {
   //take userId and socketId from user
   socket.on("addUser", (userId) => {
     addUser(userId, socket.id);
-    io.emit("getUsers", users);
   });
 
   //send and get message
@@ -82,6 +81,5 @@ io.on("connection", (socket:Socket) => {
   socket.on("disconnect", () => {
     console.log("a user disconnected!");
     removeUser(socket.id);
-    io.emit("getUsers", users);
   });
 });
