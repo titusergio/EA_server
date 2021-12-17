@@ -9,9 +9,7 @@ import studentsRoutes from './routes/students';
 import subjectRoutes from './routes/subject';
 import teacherRoutes from './routes/teacher';
 import userRoutes from './routes/user';
-<<<<<<< HEAD
 import answerRoutes from './routes/answers';
-=======
 import messageRoutes from './routes/message';
 import conversationRoutes from './routes/conversation';
 import { Socket } from 'socket.io';
@@ -19,7 +17,6 @@ import { UserI } from './models/users';
 
 import flatsRoutes from './routes/flats';
 import markersRoutes from './routes/markers';
->>>>>>> d5f836af24b50fbda825ed07c1b9c1d1fe753047
 dotenv.config();
 
 let users =Array<any>();
@@ -37,14 +34,11 @@ app.use('/students', studentsRoutes);
 app.use('/subjects',subjectRoutes);
 app.use('/teachers',teacherRoutes);
 app.use('/users',userRoutes);
-<<<<<<< HEAD
 app.use('/answers',answerRoutes)
-=======
 app.use('/message',messageRoutes);
 app.use('/conversation',conversationRoutes);
 app.use('/flats',flatsRoutes);
 app.use('/markers',markersRoutes);
->>>>>>> d5f836af24b50fbda825ed07c1b9c1d1fe753047
 
 mongoose.connect(`${process.env.CONNECTION_URL}`)                         // have to use a template string and interpolate the environment variable.Otherwise, you’ll get an error: Type 'undefined' is not assignable to type 'string'
   .then(() => app.listen(process.env.PORT, () => console.log(`Base MongoDB conectado, servidor corriendo en el puerto: http://localhost:${process.env.PORT}`)))
