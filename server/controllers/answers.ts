@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import {AnswerI, AnswerModel} from '../models/answers';
 
 const router = Router();
-
+//canvi primer commit minim2
 export const getAnswers = async (req:Request, res:Response) => { 
     try {
         const answers:AnswerI[] = await AnswerModel.find();               
