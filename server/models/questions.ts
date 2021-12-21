@@ -1,6 +1,6 @@
 import { Schema, model, Document, ObjectId} from 'mongoose';
 import {UserModel, UserI} from './users';
-import {AnswerModel, AnswerI} from './answers';
+import {SubjectModel, SubjectI} from './subject';
 
 
 
@@ -9,6 +9,7 @@ import {AnswerModel, AnswerI} from './answers';
     creator: UserI['_id'],
     question: string,
     createdAt:Date, 
+    subject:SubjectI['_id'],
     answers:Array<ObjectId>
   
         
@@ -22,6 +23,7 @@ const QuestionSchema = new Schema<QuestionI>({
     creator: { type: Schema.Types.ObjectId, ref: UserModel, required: true },
     question: { type: String, required: true },
     createdAt: { type: Date, default: new Date() },
+    subject: { type: Schema.Types.ObjectId, ref: SubjectModel, required: true  },
     answers: [{ type: Schema.Types.ObjectId, ref: 'AnswerI', required: false }]
   });
 
