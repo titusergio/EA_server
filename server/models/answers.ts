@@ -1,4 +1,4 @@
-import { Schema, model, Document} from 'mongoose';
+import { Schema, model, Document,ObjectId} from 'mongoose';
 import {UserModel, UserI} from './users';
 
 
@@ -8,7 +8,7 @@ import {UserModel, UserI} from './users';
     creator: UserI['_id']
     answer: string,
     createdAt:Date,                                                                                                  //nose pq no me deja ponerle date, me da conflicto pf
-    likeCountNumber:number
+    likes:Array<ObjectId>
         
     };
   
@@ -20,7 +20,7 @@ const AnswerSchema = new Schema<AnswerI>({
     creator: { type: Schema.Types.ObjectId, ref: UserModel, required: true },
     answer: { type: String, required: true },
     createdAt: { type: Date, default: new Date() },
-    likeCountNumber: { type: Number, required: true ,default: 0 }
+    likes: [{ type: Schema.Types.ObjectId, ref: 'UserI',required: false}]
   });
 
 
