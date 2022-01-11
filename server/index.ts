@@ -19,7 +19,7 @@ import flatsRoutes from './routes/flats';
 import markersRoutes from './routes/markers';
 dotenv.config();
 
-let users =Array<any>();
+//let users =Array<any>();
 
 const app = express();
 
@@ -44,7 +44,7 @@ mongoose.connect(`${process.env.CONNECTION_URL}`)                         // hav
   .then(() => app.listen(process.env.PORT, () => console.log(`Base MongoDB conectado, servidor corriendo en el puerto: http://localhost:${process.env.PORT}`)))
 
   .catch((error) => console.log(`${error} no se pudo conectar`));
-
+/*
 const io = require("socket.io")(8900,{
   cors:{
       origin:"http://localhost:3000",
@@ -87,4 +87,4 @@ io.on("connection", (socket:Socket) => {
     console.log("a user disconnected!");
     removeUser(socket.id);
   });
-});
+});*/
