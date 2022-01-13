@@ -33,3 +33,16 @@ export async function createConversation(req: Request, res:Response): Promise<Re
       return res.status(500).json({ message: err.message });
     }
 };
+
+export async function getConversationUsers(req: Request, res:Response): Promise<Response> { 
+    try {
+        const conversation = await ConversationModel.findOne({
+            members: { $all: [req.params.firstUserId,req.params.secondUserId]}
+        });
+        return res.status(200).json(conversation);
+    } catch (err:any) {
+        return res.status(404).json({ message: err.message });
+    }
+};
+
+
