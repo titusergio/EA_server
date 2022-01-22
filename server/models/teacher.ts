@@ -7,7 +7,7 @@ const TeacherSchema = new mongoose.Schema({
     email:{ type: String, required: true },
     office:{ type: String, required: true },
     puntuation:{ type: Number, required: true },
-    likes: [{ type: Array, required: false }],
+    likes: { type: Array, required: false },
     subjects: [{type: mongoose.Schema.Types.ObjectId, ref:'Subjects',required:false}]
 });
 
