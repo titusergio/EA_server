@@ -11,7 +11,6 @@ import {AnswerModel, AnswerI} from './answers';
     createdAt:Date, 
     answers:Array<ObjectId>
   
-        
     };
   
     

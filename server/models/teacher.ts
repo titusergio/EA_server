@@ -1,12 +1,14 @@
 import {Schema, model, Document, ObjectId} from 'mongoose';
 import { SubjectI } from './subject';
+import mongoose from 'mongoose';
 
-const TeacherSchema = new Schema({
+const TeacherSchema = new mongoose.Schema({
     name:{ type: String, required: true },
     email:{ type: String, required: true },
     office:{ type: String, required: true },
     puntuation:{ type: Number, required: true },
-    subjects: [{type: Schema.Types.ObjectId, ref:'SubjectI',required:false}]
+    likes: [{ type: Array, required: false }],
+    subjects: [{type: mongoose.Schema.Types.ObjectId, ref:'Subjects',required:false}]
 });
 
 
@@ -18,4 +20,10 @@ export interface TeacherI extends Document {
     subjects: Array<ObjectId>  
 }
 
-export const TeacherModel = model<TeacherI>('Teacher', TeacherSchema);  
+const orderSchema = new mongoose.Schema({
+    _id: mongoose.Schema.Types.ObjectId,
+    product: { type: mongoose.Schema.Types.ObjectId, ref: 'Product', required: true },
+    quantity: { type: Number, default: 1 }
+});
+
+export const TeacherModel = model('Teacher', TeacherSchema);  
