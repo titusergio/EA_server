@@ -12,7 +12,6 @@ import {SubjectModel, SubjectI} from './subject';
     subject:SubjectI['_id'],
     answers:Array<ObjectId>
   
-        
     };
   
     

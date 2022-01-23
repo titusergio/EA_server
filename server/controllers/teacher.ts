@@ -4,7 +4,7 @@ import {TeacherModel} from '../models/teacher';
 
 export async function getTeachers(req: Request, res:Response): Promise<Response> { 
     try {
-        const teacher = await TeacherModel.find();  
+        const teacher = await TeacherModel.find().populate('subjects');  
         return res.status(200).json(teacher);
         
     } catch (error:any) {                                                  
@@ -66,7 +66,7 @@ export async function deleteTeacher(req: Request, res:Response): Promise<Respons
 
 export async function updateTeacher(req: Request, res:Response): Promise<Response> { 
     const {id} = req.params;
-    const {name, email, office, puntuation, subjects} = req.body;
+    const {name, email, office, puntuation, likes, subjects} = req.body;
     if (!mongoose.Types.ObjectId.isValid(id)){
         return res.status(404).send(`No teacher with id: ${id}`);
     }
@@ -76,6 +76,7 @@ export async function updateTeacher(req: Request, res:Response): Promise<Respons
             email: email,
             office: office,
             puntuation: puntuation,
+            likes: likes,
             subjects: subjects
         }, {new:true});
         return res.json({
