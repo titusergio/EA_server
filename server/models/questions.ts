@@ -1,7 +1,7 @@
 import { Schema, model, Document, ObjectId} from 'mongoose';
 import {UserModel, UserI} from './users';
 import {SubjectModel, SubjectI} from './subject';
-
+import mongoose from 'mongoose';
 
 
 // 1. Create an interface representing a document in MongoDB.
@@ -18,12 +18,12 @@ import {SubjectModel, SubjectI} from './subject';
 
 
   // 2. Create a Schema corresponding to the document interface.
-const QuestionSchema = new Schema<QuestionI>({
+  const QuestionSchema = new mongoose.Schema({
     creator: { type: Schema.Types.ObjectId, ref: UserModel, required: true },
     question: { type: String, required: true },
     createdAt: { type: Date, default: new Date() },
     subject: { type: Schema.Types.ObjectId, ref: SubjectModel, required: true  },
-    answers: [{ type: Schema.Types.ObjectId, ref: 'AnswerI', required: false }]
+    answers: [{type: mongoose.Schema.Types.ObjectId, ref:'Answers',required:false}]
   });
 
 

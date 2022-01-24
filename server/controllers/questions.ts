@@ -7,7 +7,7 @@ const router = Router();
 
 export const getQuestions = async (req:Request, res:Response) => { 
     try {
-        const questions:QuestionI[] = await QuestionModel.find();               
+        const questions:QuestionI[] = await QuestionModel.find().populate('answers');               
         res.status(200).json(questions);
         
     } catch (error:any) {
