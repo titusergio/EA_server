@@ -24,7 +24,7 @@ let usersSocket =Array<any>();
 const app = express();
 
 app.use(express.json())                 
-app.use(express.urlencoded({ limit: '30mb', extended: true }))            //limito el tamaño, puede q no sea necessario para nuestra aplicacions
+app.use(express.urlencoded({ limit: '30mb', extended: true }))            // limito el tamaño, puede q no sea necessario para nuestra aplicacions
 app.use(cors());
 app.use(morgan("dev"));
 

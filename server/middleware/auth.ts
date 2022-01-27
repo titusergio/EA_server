@@ -28,7 +28,7 @@ const auth = async (req: Request, res: Response, next: NextFunction) => {
 
     next();
   } catch (error) {
-    console.log(error);
+    console.log(error); //asdf
   }
 };
 
